@@ -1,7 +1,5 @@
 package com.company;
 
-import java.util.regex.Pattern;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -26,6 +24,8 @@ public class Main {
         for (String ip : ips) {
             System.out.printf("%20s: %b%n", ip, validator.validate(ip));
         }
+
+        System.out.println();
 
     }
 }

@@ -8,17 +8,13 @@ public class IPAdressValidator {
     Pattern pattern;
     Matcher matcher;
 
-    private static final String FIRST_PATTERN = "([0-9]{1,3}\\\\{2}?).([0-9]{1,3}\\\\{2}?).([0-9]{1,3}\\\\{2}?.[0-9]{1,3})";
-
-    private static final String SECOND_PATTERN = "([0-9]{1,3}\\\\{2}?.[0-9]{1,3}|[^a-zA-Z]\\(*\\)*\\[*\\]*\\-*\\|*\\d*\\:*\\?*\\\\{2}?.[0-9]{1,3}|[^a-zA-Z]\\(*\\)*\\[*\\]*\\-*\\|*\\d*\\:*\\?*\\\\{2}?.[0-9]{1,3}|[^a-zA-Z]\\(*\\)*\\[*\\]*\\-*\\|*\\d*\\:*\\?*)";
-
-    private static final String THIRD_PATTERN = "(([0-9]{1,3}\\\\{2}?\\.{1})" +
+    private static final String FIRST_PATTERN = "(([0-9]{1,3}\\\\{2}?\\.{1})" +
             "(([0-9]{1,3}|[^a-zA-Z][\\(\\)\\[\\]\\-\\|\\d\\:\\?]*)\\\\{2}?\\.{1})" +
             "(([0-9]{1,3}|[^a-zA-Z][\\(\\)\\[\\]\\-\\|\\d\\:\\?]*)\\\\{2}?\\.{1})" +
             "([0-9]{1,3}|[^a-zA-Z][\\(\\)\\[\\]\\-\\|\\d\\:\\?]*))";
 
     public IPAdressValidator() {
-        pattern = Pattern.compile(THIRD_PATTERN);
+        pattern = Pattern.compile(FIRST_PATTERN);
     }
 
     public CharSequence validate(String ip) {

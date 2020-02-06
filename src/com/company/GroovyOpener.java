@@ -1,7 +1,4 @@
 package com.company;
-
-import org.apache.commons.validator.routines.InetAddressValidator;
-
 import java.io.*;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -13,16 +10,10 @@ public class GroovyOpener {
         Scanner grov = new Scanner(System.in);
         Scanner input = new Scanner(System.in);
 
-        /*Pattern pattern2 = Pattern.compile("(([0-9]{1,3}|[^a-z])\\\\{2}?\\.{1}" +
-                "([0-9]{1,3}\\\\{2}?|\\(*\\)*\\[*\\]*\\-*\\|*\\d*\\:*\\?*)\\.{1}" +
-                "([0-9]{1,3}\\\\{2}?|\\(*\\)*\\[*\\]*\\-*\\|*\\d*).{1}" +
-                "([0-9]{1,3}|\\(*\\)*\\[*\\]*\\-*\\|*\\d*))");*/
-
-        Pattern pattern = Pattern.compile("(([0-9]{1,3})\\\\{2}?\\.{1})" +
-                "(([0-9]{1,3})|[^a-zA-Z]\\(*\\)*\\[*\\]*\\-*\\|*\\d*\\:*\\?*)\\\\{2}?\\.{1}" +
-                "(([0-9]{1,3})|[^a-zA-Z]\\(*\\)*\\[*\\]*\\-*\\|*\\d*\\:*\\?*)\\\\{2}?\\.{1}" +
-                "(([0-9]{1,3})|[^a-zA-Z]\\(*\\)*\\[*\\]*\\-*\\|*\\d*\\:*\\?*)");
-
+        Pattern pattern = Pattern.compile("(dfd\\.cvr[0-9]{8}\\.ip = ('([()]*[0-9]{1,3}\\\\{2}?\\.{1})" +
+                "(([0-9]{1,3}|[^a-zA-Z][\\(\\)\\[\\]\\-\\|\\d\\:\\?]*)\\\\{2}?\\.{1})" +
+                "(([0-9]{1,3}|[^a-zA-Z][\\(\\)\\[\\]\\-\\|\\d\\:\\?]*)\\\\{2}?\\.{1})" +
+                "([0-9]{1,3}|[^a-zA-Z][\\(\\)\\[\\]\\-\\|\\d\\:\\?]*)){1,3})");
 
         try {
             System.out.println("Enter the name of the file: ");
@@ -30,13 +21,17 @@ public class GroovyOpener {
 
             input = new Scanner(file);
 
-            boolean check = false;
+            boolean check;
 
-            while (input.hasNextLine()) {
+            while (input.hasNext()) {
                 String line = input.nextLine();
                 Matcher matcher = pattern.matcher(line);
                 check = matcher.find();
+                if (!check) {
+                    input.skip(line);
+                }
                 System.out.println(check + "\t" + line);
+
             }
             input.close();
 
